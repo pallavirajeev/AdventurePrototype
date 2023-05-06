@@ -2,8 +2,19 @@ class Demo1 extends AdventureScene {
     constructor() {
         super("demo1", "The Enchanted Forest");
     }
-
+    preload(){
+        this.load.path = './assets/';
+        this.load.image('landscape', 'landscape.png');
+    }
     onEnter() {
+        let image = this.add.image(
+            700,//x
+            490,//y
+            'landscape',//imagename
+        )
+        image.setScale(2)
+        
+        //let player = this.add.text("🧚🏽‍♀️")
 
         let book = this.add.text(this.w * 0.3, this.w * 0.3, "📖 spell book")
             .setFontSize(this.s * 2)
@@ -254,7 +265,7 @@ const game = new Phaser.Game({
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
         width: 1920,
-        height: 1080
+        height: 980
     },
     scene: [Intro, Demo1, Demo2, Demo3, Demo4, Demo5, Demo6, Outro1, Outro2],
     title: "Adventure Game",
