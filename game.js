@@ -14,10 +14,24 @@ class Demo1 extends AdventureScene {
         )
         image.setScale(2)
         
-        //let player = this.add.text("🧚🏽‍♀️")
+        let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
+            .setFontSize(this.s * 20)
+            .setInteractive()
+            .on('pointerover', () => this.showMessage("Oh noo, how do I find my way out of this enchanted forest?"))
+            // .on('pointerdown', () => {
+            //     this.showMessage("You pick up the spell book.");
+            //     this.gainItem('spell book');
+            //     this.tweens.add({
+            //         targets: book,
+            //         y: `-=${2 * this.s}`,
+            //         alpha: { from: 1, to: 0 },
+            //         duration: 500,
+            //         onComplete: () => player.destroy()
+            //     });
+            // });
 
-        let book = this.add.text(this.w * 0.3, this.w * 0.3, "📖 spell book")
-            .setFontSize(this.s * 2)
+        let book = this.add.text(this.w * 0.5, this.w * 0.3, "📖")
+            .setFontSize(this.s * 5)
             .setInteractive()
             .on('pointerover', () => this.showMessage("Oooh, a spell book!."))
             .on('pointerdown', () => {
