@@ -5,6 +5,7 @@ class Demo1 extends AdventureScene {
     preload(){
         this.load.path = './assets/';
         this.load.image('landscape', 'landscape.png');
+        this.load.image('arrow', 'pointer.webp');
     }
     onEnter() {
         let image = this.add.image(
@@ -13,22 +14,36 @@ class Demo1 extends AdventureScene {
             'landscape',//imagename
         )
         image.setScale(2)
+
+        let arrow = this.add.image(
+            1300,//x
+            900,//y
+            'arrow',//imagename
+        )
+        arrow.setScale(.1)
+        arrow.setInteractive()
+        arrow.on('pointerover', () => this.showMessage("Go right"))
+        arrow.on('pointerdown', () => {
+            this.gotoScene('demo3');
+        })
         
+        let arrow2 = this.add.image(
+            90,//x
+            850,//y
+            'arrow',//imagename
+        )
+        arrow2.angle = 90
+        arrow2.setScale(.1)
+        arrow2.setInteractive()
+        arrow2.on('pointerover', () => this.showMessage("Go down"))
+        arrow2.on('pointerdown', () => {
+            this.gotoScene('demo2');
+        })
+
         let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
             .setFontSize(this.s * 20)
             .setInteractive()
             .on('pointerover', () => this.showMessage("Oh noo, how do I find my way out of this enchanted forest?"))
-            // .on('pointerdown', () => {
-            //     this.showMessage("You pick up the spell book.");
-            //     this.gainItem('spell book');
-            //     this.tweens.add({
-            //         targets: book,
-            //         y: `-=${2 * this.s}`,
-            //         alpha: { from: 1, to: 0 },
-            //         duration: 500,
-            //         onComplete: () => player.destroy()
-            //     });
-            // });
 
         let book = this.add.text(this.w * 0.5, this.w * 0.3, "📖")
             .setFontSize(this.s * 5)
@@ -46,7 +61,7 @@ class Demo1 extends AdventureScene {
                 });
             });
 
-        // let key = this.add.text(this.w * 0.5, this.w * 0.1, "🔑 key")
+        // let arrow = this.add.text(this.w * 0.5, this.w * 0.1, "")
         //     .setFontSize(this.s * 2)
         //     .setInteractive()
         //     .on('pointerover', () => {
