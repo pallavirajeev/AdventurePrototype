@@ -227,9 +227,19 @@ class Intro extends Phaser.Scene {
     }
 }
 
-class Outro extends Phaser.Scene {
+class Outro1 extends Phaser.Scene {
     constructor() {
-        super('outro');
+        super('outro1');
+    }
+    create() {
+        this.add.text(50, 50, "That's all!").setFontSize(50);
+        this.add.text(50, 100, "Click anywhere to restart.").setFontSize(20);
+        this.input.on('pointerdown', () => this.scene.start('intro'));
+    }
+}
+class Outro2 extends Phaser.Scene {
+    constructor() {
+        super('outro2');
     }
     create() {
         this.add.text(50, 50, "That's all!").setFontSize(50);
@@ -246,7 +256,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Demo1, Demo2, Demo3, Demo4, Demo5, Demo6, Outro],
+    scene: [Intro, Demo1, Demo2, Demo3, Demo4, Demo5, Demo6, Outro1, Outro2],
     title: "Adventure Game",
 });
 
