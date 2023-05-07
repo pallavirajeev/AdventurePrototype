@@ -320,7 +320,7 @@ class Demo5 extends AdventureScene {
         arrow.setInteractive()
         arrow.on('pointerover', () => this.showMessage("Go right"))
         arrow.on('pointerdown', () => {
-            this.gotoScene('demo5');
+            this.gotoScene('demo6');
         })
         
         // let arrow2 = this.add.image(
@@ -364,14 +364,14 @@ class Demo6 extends AdventureScene {
     }
     preload(){
         this.load.path = './assets/';
-        this.load.image('cabin', 'cabin.png');
+        this.load.image('portal', 'portal.png');
         this.load.image('arrow', 'pointer.webp');
     }
     onEnter() {
         let image = this.add.image(
             650,//x
             490,//y
-            'cabin',//imagename
+            'portal',//imagename
         )
         image.setScale(2)
 
@@ -400,24 +400,24 @@ class Demo6 extends AdventureScene {
         //     this.gotoScene('demo3');
         // })
 
-        let player = this.add.text(this.w * 0.5, this.w * 0.2, "🧚🏽‍♀️")
+        let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
             .setFontSize(this.s * 20)
             .setInteractive()
-            .on('pointerover', () => this.showMessage("This looks more promising."))
+            .on('pointerover', () => this.showMessage("I don't know whether to believe the crystall ball or not...but this weird potion is right under my nose."))
 
-        let ball = this.add.text(this.w * 0.35, this.w * 0.25, "🔮")
+        let potion = this.add.text(this.w * 0.24, this.w * 0.35, "🧪")
             .setFontSize(this.s * 4)
             .setInteractive()
-            .on('pointerover', () => this.showMessage("You will soon find a way out, and it'll be right under your nose. Take it and you will leave the Enchanted Forest."))
+            .on('pointerover', () => this.showMessage("Weird potion!"))
             .on('pointerdown', () => {
-                this.showMessage("You pick up the crystal ball.");
-                this.gainItem('crystal ball');
+                this.showMessage("You pick up the potion.");
+                this.gainItem('potion');
                 this.tweens.add({
-                    targets: ball,
+                    targets: potion,
                     y: `-=${2 * this.s}`,
                     alpha: { from: 1, to: 0 },
                     duration: 500,
-                    onComplete: () => ball.destroy()
+                    onComplete: () => potion.destroy()
                 });
             });
     }
