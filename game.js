@@ -241,23 +241,23 @@ class Demo4 extends AdventureScene {
     }
     onEnter() {
         let image = this.add.image(
-            700,//x
+            650,//x
             490,//y
             'farm',//imagename
         )
-        image.setScale(1)
+        image.setScale(2)
 
-        let arrow = this.add.image(
-            1300,//x
-            900,//y
-            'arrow',//imagename
-        )
-        arrow.setScale(.1)
-        arrow.setInteractive()
-        arrow.on('pointerover', () => this.showMessage("Go right"))
-        arrow.on('pointerdown', () => {
-            this.gotoScene('demo5');
-        })
+        // let arrow = this.add.image(
+        //     1300,//x
+        //     900,//y
+        //     'arrow',//imagename
+        // )
+        // arrow.setScale(.1)
+        // arrow.setInteractive()
+        // arrow.on('pointerover', () => this.showMessage("Go right"))
+        // arrow.on('pointerdown', () => {
+        //     this.gotoScene('demo5');
+        // })
         
         let arrow2 = this.add.image(
             90,//x
@@ -269,16 +269,16 @@ class Demo4 extends AdventureScene {
         arrow2.setInteractive()
         arrow2.on('pointerover', () => this.showMessage("Go back"))
         arrow2.on('pointerdown', () => {
-            this.gotoScene('demo4');
+            this.gotoScene('demo3');
         })
 
-        let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
+        let player = this.add.text(this.w * 0.2, this.w * 0.2, "🧚🏽‍♀️")
             .setFontSize(this.s * 20)
             .setInteractive()
             .on('pointerover', () => this.showMessage("I'm just getting more lost, there's nothing helpful here either."))
 
-        let mushroom = this.add.text(this.w * 0.4, this.w * 0.45, "🍄")
-            .setFontSize(this.s * 5)
+        let mushroom = this.add.text(this.w * 0.4, this.w * 0.3, "🍄")
+            .setFontSize(this.s * 8)
             .setInteractive()
             .on('pointerover', () => this.showMessage("A mushroom!"))
             .on('pointerdown', () => {
@@ -298,60 +298,128 @@ class Demo5 extends AdventureScene {
     constructor() {
         super("demo5", "The Cabin");
     }
+    preload(){
+        this.load.path = './assets/';
+        this.load.image('cabin', 'cabin.png');
+        this.load.image('arrow', 'pointer.webp');
+    }
     onEnter() {
-        this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
-            .setFontSize(this.s * 2)
-            .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage("You've got no other choice, really.");
-            })
-            .on('pointerdown', () => {
-                this.gotoScene('demo1');
-            });
+        let image = this.add.image(
+            650,//x
+            490,//y
+            'cabin',//imagename
+        )
+        image.setScale(2)
 
-        let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
+        let arrow = this.add.image(
+            1300,//x
+            900,//y
+            'arrow',//imagename
+        )
+        arrow.setScale(.1)
+        arrow.setInteractive()
+        arrow.on('pointerover', () => this.showMessage("Go right"))
+        arrow.on('pointerdown', () => {
+            this.gotoScene('demo5');
+        })
+        
+        // let arrow2 = this.add.image(
+        //     90,//x
+        //     850,//y
+        //     'arrow',//imagename
+        // )
+        // arrow2.angle = 90
+        // arrow2.setScale(.1)
+        // arrow2.setInteractive()
+        // arrow2.on('pointerover', () => this.showMessage("Go back"))
+        // arrow2.on('pointerdown', () => {
+        //     this.gotoScene('demo3');
+        // })
+
+        let player = this.add.text(this.w * 0.5, this.w * 0.2, "🧚🏽‍♀️")
+            .setFontSize(this.s * 20)
             .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage('*giggles*');
+            .on('pointerover', () => this.showMessage("This looks more promising."))
+
+        let ball = this.add.text(this.w * 0.35, this.w * 0.25, "🔮")
+            .setFontSize(this.s * 4)
+            .setInteractive()
+            .on('pointerover', () => this.showMessage("You will soon find a way out, and it'll be right under your nose. Take it and you will leave the Enchanted Forest."))
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the crystal ball.");
+                this.gainItem('crystal ball');
                 this.tweens.add({
-                    targets: finish,
-                    x: this.s + (this.h - 2 * this.s) * Math.random(),
-                    y: this.s + (this.h - 2 * this.s) * Math.random(),
-                    ease: 'Sine.inOut',
-                    duration: 500
+                    targets: ball,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => ball.destroy()
                 });
-            })
-            .on('pointerdown', () => this.gotoScene('outro'));
+            });
     }
 }
 class Demo6 extends AdventureScene {
     constructor() {
         super("demo6", "The Portal");
     }
+    preload(){
+        this.load.path = './assets/';
+        this.load.image('cabin', 'cabin.png');
+        this.load.image('arrow', 'pointer.webp');
+    }
     onEnter() {
-        this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
-            .setFontSize(this.s * 2)
-            .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage("You've got no other choice, really.");
-            })
-            .on('pointerdown', () => {
-                this.gotoScene('demo1');
-            });
+        let image = this.add.image(
+            650,//x
+            490,//y
+            'cabin',//imagename
+        )
+        image.setScale(2)
 
-        let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
+        let arrow = this.add.image(
+            1300,//x
+            900,//y
+            'arrow',//imagename
+        )
+        arrow.setScale(.1)
+        arrow.setInteractive()
+        arrow.on('pointerover', () => this.showMessage("Go right"))
+        arrow.on('pointerdown', () => {
+            this.gotoScene('demo5');
+        })
+        
+        // let arrow2 = this.add.image(
+        //     90,//x
+        //     850,//y
+        //     'arrow',//imagename
+        // )
+        // arrow2.angle = 90
+        // arrow2.setScale(.1)
+        // arrow2.setInteractive()
+        // arrow2.on('pointerover', () => this.showMessage("Go back"))
+        // arrow2.on('pointerdown', () => {
+        //     this.gotoScene('demo3');
+        // })
+
+        let player = this.add.text(this.w * 0.5, this.w * 0.2, "🧚🏽‍♀️")
+            .setFontSize(this.s * 20)
             .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage('*giggles*');
+            .on('pointerover', () => this.showMessage("This looks more promising."))
+
+        let ball = this.add.text(this.w * 0.35, this.w * 0.25, "🔮")
+            .setFontSize(this.s * 4)
+            .setInteractive()
+            .on('pointerover', () => this.showMessage("You will soon find a way out, and it'll be right under your nose. Take it and you will leave the Enchanted Forest."))
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the crystal ball.");
+                this.gainItem('crystal ball');
                 this.tweens.add({
-                    targets: finish,
-                    x: this.s + (this.h - 2 * this.s) * Math.random(),
-                    y: this.s + (this.h - 2 * this.s) * Math.random(),
-                    ease: 'Sine.inOut',
-                    duration: 500
+                    targets: ball,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => ball.destroy()
                 });
-            })
-            .on('pointerdown', () => this.gotoScene('outro'));
+            });
     }
 }
 
