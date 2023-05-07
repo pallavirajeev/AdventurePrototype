@@ -375,17 +375,17 @@ class Demo6 extends AdventureScene {
         )
         image.setScale(2)
 
-        let arrow = this.add.image(
-            1300,//x
-            900,//y
-            'arrow',//imagename
-        )
-        arrow.setScale(.1)
-        arrow.setInteractive()
-        arrow.on('pointerover', () => this.showMessage("Go right"))
-        arrow.on('pointerdown', () => {
-            this.gotoScene('demo5');
-        })
+        // let arrow = this.add.image(
+        //     1300,//x
+        //     900,//y
+        //     'arrow',//imagename
+        // )
+        // arrow.setScale(.1)
+        // arrow.setInteractive()
+        // arrow.on('pointerover', () => this.showMessage("Go right"))
+        // arrow.on('pointerdown', () => {
+        //     this.gotoScene('demo5');
+        // })
         
         // let arrow2 = this.add.image(
         //     90,//x
@@ -420,6 +420,52 @@ class Demo6 extends AdventureScene {
                     onComplete: () => potion.destroy()
                 });
             });
+        
+        let line = this.add.text(this.w * 0.47, this.w * 0.346, "〰")
+        .setFontSize(this.s * 19.5)
+        .setInteractive()
+        .rotation = 80
+        //.on('pointerover', () => this.showMessage("I don't know whether to believe the crystall ball or not...but this weird potion is right under my nose."))
+
+    
+        let e1 = this.add.text(this.w * 0.48, this.w * 0.23, "⚫️")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                if (this.hasItem("potion")) {
+                    this.showMessage("You can drink the potion to enter through this side.");
+                } else {
+                    this.showMessage("You need to drink a potion to enter through this side. Can you find a potion?");
+                }
+            })
+            .on('pointerdown', () => {
+                if (this.hasItem("potion")) {
+                    this.loseItem("potion");
+                    this.showMessage("*whoosh*");
+                    //door.setText("🚪 unlocked door");
+                    this.gotoScene('outro1');
+                }
+            })
+
+        let e2 = this.add.text(this.w * 0.56, this.w * 0.23, "⚫️")
+            .setFontSize(this.s * 2)
+            .setInteractive()
+            .on('pointerover', () => {
+                if (this.hasItem("book")) {
+                    this.showMessage("You can cast a spell to enter through this side.");
+                } else {
+                    this.showMessage("You need a spell to enter through this side. Can you find a spell book?");
+                }
+            })
+            .on('pointerdown', () => {
+                if (this.hasItem("book")) {
+                    this.loseItem("book");
+                    this.showMessage("*whoosh*");
+                    //door.setText("🚪 unlocked door");
+                    this.gotoScene('outro2');
+                }
+            })
+
     }
 }
 
