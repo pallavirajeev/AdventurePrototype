@@ -131,11 +131,11 @@ class Demo2 extends AdventureScene {
         // })
         
         let arrow2 = this.add.image(
-            90,//x
-            850,//y
+            120,//x
+            870,//y
             'arrow',//imagename
         )
-        arrow2.angle = 90
+        arrow2.angle = 180
         arrow2.setScale(.1)
         arrow2.setInteractive()
         arrow2.on('pointerover', () => this.showMessage("Go back"))
