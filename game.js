@@ -105,31 +105,65 @@ class Demo2 extends AdventureScene {
     constructor() {
         super("demo2", "The Pond");
     }
-    onEnter() {
-        this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
-            .setFontSize(this.s * 2)
-            .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage("You've got no other choice, really.");
-            })
-            .on('pointerdown', () => {
-                this.gotoScene('demo1');
-            });
-
-        let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
-            .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage('*giggles*');
-                this.tweens.add({
-                    targets: finish,
-                    x: this.s + (this.h - 2 * this.s) * Math.random(),
-                    y: this.s + (this.h - 2 * this.s) * Math.random(),
-                    ease: 'Sine.inOut',
-                    duration: 500
-                });
-            })
-            .on('pointerdown', () => this.gotoScene('outro'));
+    preload(){
+        this.load.path = './assets/';
+        this.load.image('pond', 'pond.png');
+        this.load.image('arrow', 'pointer.webp');
     }
+    onEnter() {
+        let image = this.add.image(
+            630,//x
+            490,//y
+            'pond',//imagename
+        )
+        image.setScale(2)
+
+        // let arrow = this.add.image(
+        //     1300,//x
+        //     900,//y
+        //     'arrow',//imagename
+        // )
+        // arrow.setScale(.1)
+        // arrow.setInteractive()
+        // arrow.on('pointerover', () => this.showMessage("Go right"))
+        // arrow.on('pointerdown', () => {
+        //     this.gotoScene('demo3');
+        // })
+        
+        let arrow2 = this.add.image(
+            90,//x
+            850,//y
+            'arrow',//imagename
+        )
+        arrow2.angle = 90
+        arrow2.setScale(.1)
+        arrow2.setInteractive()
+        arrow2.on('pointerover', () => this.showMessage("Go back"))
+        arrow2.on('pointerdown', () => {
+            this.gotoScene('demo1');
+        })
+
+        let player = this.add.text(this.w * 0.01, this.w * 0.17, "🧚🏽‍♀️")
+            .setFontSize(this.s * 20)
+            .setInteractive()
+            .on('pointerover', () => this.showMessage("Hey look a wand on the other side of the pond, maybe that could be helpful!"))
+
+        let wand = this.add.text(this.w * 0.68, this.w * 0.28, "🪄")
+            .setFontSize(this.s * 5)
+            .setInteractive()
+            .on('pointerover', () => this.showMessage("A mysterious wand!"))
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the wand.");
+                this.gainItem('wand');
+                this.tweens.add({
+                    targets: wand,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => wand.destroy()
+                });
+            }); 
+        }
 }
 
 class Demo3 extends AdventureScene {
