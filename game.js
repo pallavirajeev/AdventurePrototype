@@ -48,7 +48,7 @@ class Demo1 extends AdventureScene {
         let book = this.add.text(this.w * 0.5, this.w * 0.3, "📖")
             .setFontSize(this.s * 5)
             .setInteractive()
-            .on('pointerover', () => this.showMessage("Oooh, a spell book!."))
+            .on('pointerover', () => this.showMessage("Oooh, a spell book!"))
             .on('pointerdown', () => {
                 this.showMessage("You pick up the spell book.");
                 this.gainItem('spell book');
@@ -170,60 +170,128 @@ class Demo3 extends AdventureScene {
     constructor() {
         super("demo3", "The Path");
     }
+    preload(){
+        this.load.path = './assets/';
+        this.load.image('path', 'path.png');
+        this.load.image('arrow', 'pointer.webp');
+    }
     onEnter() {
-        this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
-            .setFontSize(this.s * 2)
-            .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage("You've got no other choice, really.");
-            })
-            .on('pointerdown', () => {
-                this.gotoScene('demo1');
-            });
+        let image = this.add.image(
+            700,//x
+            490,//y
+            'path',//imagename
+        )
+        image.setScale(1)
 
-        let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
+        let arrow = this.add.image(
+            1300,//x
+            900,//y
+            'arrow',//imagename
+        )
+        arrow.setScale(.1)
+        arrow.setInteractive()
+        arrow.on('pointerover', () => this.showMessage("Go right"))
+        arrow.on('pointerdown', () => {
+            this.gotoScene('demo5');
+        })
+        
+        let arrow2 = this.add.image(
+            90,//x
+            850,//y
+            'arrow',//imagename
+        )
+        arrow2.angle = 90
+        arrow2.setScale(.1)
+        arrow2.setInteractive()
+        arrow2.on('pointerover', () => this.showMessage("Go down"))
+        arrow2.on('pointerdown', () => {
+            this.gotoScene('demo4');
+        })
+
+        let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
+            .setFontSize(this.s * 20)
             .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage('*giggles*');
+            .on('pointerover', () => this.showMessage("I don't see much here, just some pretty water lilies."))
+
+        let flower = this.add.text(this.w * 0.4, this.w * 0.45, "🪷")
+            .setFontSize(this.s * 5)
+            .setInteractive()
+            .on('pointerover', () => this.showMessage("A pretty water lily!"))
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the water lily.");
+                this.gainItem('water lily');
                 this.tweens.add({
-                    targets: finish,
-                    x: this.s + (this.h - 2 * this.s) * Math.random(),
-                    y: this.s + (this.h - 2 * this.s) * Math.random(),
-                    ease: 'Sine.inOut',
-                    duration: 500
+                    targets: flower,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => flower.destroy()
                 });
-            })
-            .on('pointerdown', () => this.gotoScene('outro'));
+            });
     }
 }
 class Demo4 extends AdventureScene {
     constructor() {
         super("demo4", "The Mushroom Farm");
     }
+    preload(){
+        this.load.path = './assets/';
+        this.load.image('farm', 'farm.png');
+        this.load.image('arrow', 'pointer.webp');
+    }
     onEnter() {
-        this.add.text(this.w * 0.3, this.w * 0.4, "just go back")
-            .setFontSize(this.s * 2)
-            .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage("You've got no other choice, really.");
-            })
-            .on('pointerdown', () => {
-                this.gotoScene('demo1');
-            });
+        let image = this.add.image(
+            700,//x
+            490,//y
+            'farm',//imagename
+        )
+        image.setScale(1)
 
-        let finish = this.add.text(this.w * 0.6, this.w * 0.2, '(finish the game)')
+        let arrow = this.add.image(
+            1300,//x
+            900,//y
+            'arrow',//imagename
+        )
+        arrow.setScale(.1)
+        arrow.setInteractive()
+        arrow.on('pointerover', () => this.showMessage("Go right"))
+        arrow.on('pointerdown', () => {
+            this.gotoScene('demo5');
+        })
+        
+        let arrow2 = this.add.image(
+            90,//x
+            850,//y
+            'arrow',//imagename
+        )
+        arrow2.angle = 90
+        arrow2.setScale(.1)
+        arrow2.setInteractive()
+        arrow2.on('pointerover', () => this.showMessage("Go back"))
+        arrow2.on('pointerdown', () => {
+            this.gotoScene('demo4');
+        })
+
+        let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
+            .setFontSize(this.s * 20)
             .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage('*giggles*');
+            .on('pointerover', () => this.showMessage("I'm just getting more lost, there's nothing helpful here either."))
+
+        let mushroom = this.add.text(this.w * 0.4, this.w * 0.45, "🍄")
+            .setFontSize(this.s * 5)
+            .setInteractive()
+            .on('pointerover', () => this.showMessage("A mushroom!"))
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the mushroom.");
+                this.gainItem('mushroom');
                 this.tweens.add({
-                    targets: finish,
-                    x: this.s + (this.h - 2 * this.s) * Math.random(),
-                    y: this.s + (this.h - 2 * this.s) * Math.random(),
-                    ease: 'Sine.inOut',
-                    duration: 500
+                    targets: mushroom,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => mushroom.destroy()
                 });
-            })
-            .on('pointerdown', () => this.gotoScene('outro'));
+            });
     }
 }
 class Demo5 extends AdventureScene {
