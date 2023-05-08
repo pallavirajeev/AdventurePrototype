@@ -22,11 +22,20 @@ class Demo1 extends AdventureScene {
         )
         arrow.setScale(.1)
         arrow.setInteractive()
-        arrow.on('pointerover', () => this.showMessage("Go right"))
-        arrow.on('pointerdown', () => {
-            this.gotoScene('demo3');
+        arrow.on('pointerover', () => {
+            if (this.hasItem("spell book")){
+                this.showMessage("Go right")
+            } else{
+                this.showMessage("Maybe the spell book would be helpful to grab before leaving.")
+            }
         })
-        
+        arrow.on('pointerdown', () => {
+            if (this.hasItem("spell book")) {
+                //this.loseItem("book")
+                this.gotoScene('demo3');
+            }
+        })
+
         let arrow2 = this.add.image(
             90,//x
             850,//y
@@ -61,43 +70,6 @@ class Demo1 extends AdventureScene {
                 });
             });
 
-        // let arrow = this.add.text(this.w * 0.5, this.w * 0.1, "")
-        //     .setFontSize(this.s * 2)
-        //     .setInteractive()
-        //     .on('pointerover', () => {
-        //         this.showMessage("It's a nice key.")
-        //     })
-        //     .on('pointerdown', () => {
-        //         this.showMessage("You pick up the key.");
-        //         this.gainItem('key');
-        //         this.tweens.add({
-        //             targets: key,
-        //             y: `-=${2 * this.s}`,
-        //             alpha: { from: 1, to: 0 },
-        //             duration: 500,
-        //             onComplete: () => key.destroy()
-        //         });
-        //     })
-
-        // let door = this.add.text(this.w * 0.1, this.w * 0.15, "🚪 locked door")
-        //     .setFontSize(this.s * 2)
-        //     .setInteractive()
-        //     .on('pointerover', () => {
-        //         if (this.hasItem("key")) {
-        //             this.showMessage("You've got the key for this door.");
-        //         } else {
-        //             this.showMessage("It's locked. Can you find a key?");
-        //         }
-        //     })
-        //     .on('pointerdown', () => {
-        //         if (this.hasItem("key")) {
-        //             this.loseItem("key");
-        //             this.showMessage("*squeak*");
-        //             door.setText("🚪 unlocked door");
-        //             this.gotoScene('demo2');
-        //         }
-        //     })
-
     }
 }
 
@@ -117,18 +89,6 @@ class Demo2 extends AdventureScene {
             'pond',//imagename
         )
         image.setScale(2)
-
-        // let arrow = this.add.image(
-        //     1300,//x
-        //     900,//y
-        //     'arrow',//imagename
-        // )
-        // arrow.setScale(.1)
-        // arrow.setInteractive()
-        // arrow.on('pointerover', () => this.showMessage("Go right"))
-        // arrow.on('pointerdown', () => {
-        //     this.gotoScene('demo3');
-        // })
         
         let arrow2 = this.add.image(
             120,//x
@@ -246,25 +206,13 @@ class Demo4 extends AdventureScene {
             'farm',//imagename
         )
         image.setScale(2)
-
-        // let arrow = this.add.image(
-        //     1300,//x
-        //     900,//y
-        //     'arrow',//imagename
-        // )
-        // arrow.setScale(.1)
-        // arrow.setInteractive()
-        // arrow.on('pointerover', () => this.showMessage("Go right"))
-        // arrow.on('pointerdown', () => {
-        //     this.gotoScene('demo5');
-        // })
         
         let arrow2 = this.add.image(
-            90,//x
-            850,//y
+            120,//x
+            870,//y
             'arrow',//imagename
         )
-        arrow2.angle = 90
+        arrow2.angle = 180
         arrow2.setScale(.1)
         arrow2.setInteractive()
         arrow2.on('pointerover', () => this.showMessage("Go back"))
@@ -322,19 +270,6 @@ class Demo5 extends AdventureScene {
         arrow.on('pointerdown', () => {
             this.gotoScene('demo6');
         })
-        
-        // let arrow2 = this.add.image(
-        //     90,//x
-        //     850,//y
-        //     'arrow',//imagename
-        // )
-        // arrow2.angle = 90
-        // arrow2.setScale(.1)
-        // arrow2.setInteractive()
-        // arrow2.on('pointerover', () => this.showMessage("Go back"))
-        // arrow2.on('pointerdown', () => {
-        //     this.gotoScene('demo3');
-        // })
 
         let player = this.add.text(this.w * 0.5, this.w * 0.2, "🧚🏽‍♀️")
             .setFontSize(this.s * 20)
@@ -345,17 +280,17 @@ class Demo5 extends AdventureScene {
             .setFontSize(this.s * 4)
             .setInteractive()
             .on('pointerover', () => this.showMessage("You will soon find a way out, and it'll be right under your nose. Take it and you will leave the Enchanted Forest."))
-            .on('pointerdown', () => {
-                this.showMessage("You pick up the crystal ball.");
-                this.gainItem('crystal ball');
-                this.tweens.add({
-                    targets: ball,
-                    y: `-=${2 * this.s}`,
-                    alpha: { from: 1, to: 0 },
-                    duration: 500,
-                    onComplete: () => ball.destroy()
-                });
-            });
+            // .on('pointerdown', () => {
+            //     this.showMessage("You pick up the crystal ball.");
+            //     this.gainItem('crystal ball');
+            //     this.tweens.add({
+            //         targets: ball,
+            //         y: `-=${2 * this.s}`,
+            //         alpha: { from: 1, to: 0 },
+            //         duration: 500,
+            //         onComplete: () => ball.destroy()
+            //     });
+            // });
     }
 }
 class Demo6 extends AdventureScene {
@@ -375,30 +310,6 @@ class Demo6 extends AdventureScene {
         )
         image.setScale(2)
 
-        // let arrow = this.add.image(
-        //     1300,//x
-        //     900,//y
-        //     'arrow',//imagename
-        // )
-        // arrow.setScale(.1)
-        // arrow.setInteractive()
-        // arrow.on('pointerover', () => this.showMessage("Go right"))
-        // arrow.on('pointerdown', () => {
-        //     this.gotoScene('demo5');
-        // })
-        
-        // let arrow2 = this.add.image(
-        //     90,//x
-        //     850,//y
-        //     'arrow',//imagename
-        // )
-        // arrow2.angle = 90
-        // arrow2.setScale(.1)
-        // arrow2.setInteractive()
-        // arrow2.on('pointerover', () => this.showMessage("Go back"))
-        // arrow2.on('pointerdown', () => {
-        //     this.gotoScene('demo3');
-        // })
 
         let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
             .setFontSize(this.s * 20)
@@ -451,15 +362,15 @@ class Demo6 extends AdventureScene {
             .setFontSize(this.s * 2)
             .setInteractive()
             .on('pointerover', () => {
-                if (this.hasItem("book")) {
+                if (this.hasItem("spell book")) {
                     this.showMessage("You can cast a spell to enter through this side.");
                 } else {
                     this.showMessage("You need a spell to enter through this side. Can you find a spell book?");
                 }
             })
             .on('pointerdown', () => {
-                if (this.hasItem("book")) {
-                    this.loseItem("book");
+                if (this.hasItem("spell book")) {
+                    this.loseItem("spell book");
                     this.showMessage("*whoosh*");
                     //door.setText("🚪 unlocked door");
                     this.gotoScene('outro2');
@@ -487,20 +398,44 @@ class Outro1 extends Phaser.Scene {
     constructor() {
         super('outro1');
     }
+    preload(){
+        this.load.path = './assets/';
+        this.load.image('outro1', 'outro1.png');
+        //this.load.image('arrow', 'pointer.webp');
+    }
     create() {
-        this.add.text(50, 50, "That's all!").setFontSize(50);
-        this.add.text(50, 100, "Click anywhere to restart.").setFontSize(20);
-        this.input.on('pointerdown', () => this.scene.start('intro'));
+        let image = this.add.image(
+            965,//x
+            490,//y
+            'outro1',//imagename
+        )
+        image.setScale(2)
+
+        // this.add.text(50, 50, "That's all!").setFontSize(50);
+        // this.add.text(50, 100, "Click anywhere to restart.").setFontSize(20);
+        // this.input.on('pointerdown', () => this.scene.start('intro'));
     }
 }
 class Outro2 extends Phaser.Scene {
     constructor() {
         super('outro2');
     }
+    preload(){
+        this.load.path = './assets/';
+        this.load.image('outro2', 'outro2.png');
+        //this.load.image('arrow', 'pointer.webp');
+    }
     create() {
-        this.add.text(50, 50, "That's all!").setFontSize(50);
-        this.add.text(50, 100, "Click anywhere to restart.").setFontSize(20);
-        this.input.on('pointerdown', () => this.scene.start('intro'));
+        let image = this.add.image(
+            965,//x
+            490,//y
+            'outro2',//imagename
+        )
+        image.setScale(2)
+
+        // this.add.text(50, 50, "That's all!").setFontSize(50);
+        // this.add.text(50, 100, "Click anywhere to restart.").setFontSize(20);
+        // this.input.on('pointerdown', () => this.scene.start('intro'));
     }
 }
 
