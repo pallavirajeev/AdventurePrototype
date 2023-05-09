@@ -130,21 +130,34 @@ class Demo2 extends AdventureScene {
         let player = this.makeEmoji(0.01,0.17,"🧚🏽‍♀️","Hey look a wand on the other side of the pond, maybe that could be helpful!")
             .setFontSize(this.s * 20)
         
-        let wand = this.add.text(this.w * 0.68, this.w * 0.28, "🪄")
-            .setFontSize(this.s * 5)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("A mysterious wand!"))
+        // let wand = this.add.text(this.w * 0.68, this.w * 0.28, "🪄")
+        //     .setFontSize(this.s * 5)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("A mysterious wand!"))
+        //     .on('pointerdown', () => {
+        //         this.showMessage("You pick up the wand.");
+        //         this.gainItem('wand');
+        //         this.tweens.add({
+        //             targets: wand,
+        //             y: `-=${2 * this.s}`,
+        //             alpha: { from: 1, to: 0 },
+        //             duration: 500,
+        //             onComplete: () => wand.destroy()
+        //         });
+        //     }); 
+
+        let wand = this.makeEmoji(0.68,0.28,"🪄","A mysterious wand!")
             .on('pointerdown', () => {
-                this.showMessage("You pick up the wand.");
-                this.gainItem('wand');
-                this.tweens.add({
-                    targets: wand,
-                    y: `-=${2 * this.s}`,
-                    alpha: { from: 1, to: 0 },
-                    duration: 500,
-                    onComplete: () => wand.destroy()
-                });
-            }); 
+            this.showMessage("You pick up the wand.");
+            this.gainItem('wand');
+            this.tweens.add({
+                targets: wand,
+                y: `-=${2 * this.s}`,
+                alpha: { from: 1, to: 0 },
+                duration: 500,
+                onComplete: () => wand.destroy()
+            });
+        });
         this.enhance(wand);
     }
 }
@@ -200,22 +213,35 @@ class Demo3 extends AdventureScene {
             .setFontSize(this.s * 20)
         //this.enhance(player);
 
-
-        let flower = this.add.text(this.w * 0.4, this.w * 0.45, "🪷")
-            .setFontSize(this.s * 5)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("A pretty water lily!"))
+        let flower = this.makeEmoji(0.4,0.45,"🪷","A pretty water lily!")
             .on('pointerdown', () => {
-                this.showMessage("You pick up the water lily.");
-                this.gainItem('water lily');
-                this.tweens.add({
-                    targets: flower,
-                    y: `-=${2 * this.s}`,
-                    alpha: { from: 1, to: 0 },
-                    duration: 500,
-                    onComplete: () => flower.destroy()
-                });
+            this.showMessage("You pick up the water lily.");
+            this.gainItem('water lily');
+            this.tweens.add({
+                targets: flower,
+                y: `-=${2 * this.s}`,
+                alpha: { from: 1, to: 0 },
+                duration: 500,
+                onComplete: () => flower.destroy()
             });
+        });
+
+        // let flower = this.add.text(this.w * 0.4, this.w * 0.45, "🪷")
+        //     .setFontSize(this.s * 5)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("A pretty water lily!"))
+        //     .on('pointerdown', () => {
+        //         this.showMessage("You pick up the water lily.");
+        //         this.gainItem('water lily');
+        //         this.tweens.add({
+        //             targets: flower,
+        //             y: `-=${2 * this.s}`,
+        //             alpha: { from: 1, to: 0 },
+        //             duration: 500,
+        //             onComplete: () => flower.destroy()
+        //         });
+        //     });
+
         this.enhance(flower);
     }
 }
@@ -258,10 +284,8 @@ class Demo4 extends AdventureScene {
             .setFontSize(this.s * 20)
 
         //8 not 5
-        let mushroom = this.add.text(this.w * 0.4, this.w * 0.3, "🍄")
-            .setFontSize(this.s * 8)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("A mushroom!"))
+        let mushroom = this.makeEmoji(0.4,0.3,"🍄","A mushroom!")
+            .setFontSize(this.s*8)
             .on('pointerdown', () => {
                 this.showMessage("You pick up the mushroom.");
                 this.gainItem('mushroom');
@@ -273,6 +297,21 @@ class Demo4 extends AdventureScene {
                     onComplete: () => mushroom.destroy()
                 });
             });
+        // let mushroom = this.add.text(this.w * 0.4, this.w * 0.3, "🍄")
+        //     .setFontSize(this.s * 8)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("A mushroom!"))
+        //     .on('pointerdown', () => {
+        //         this.showMessage("You pick up the mushroom.");
+        //         this.gainItem('mushroom');
+        //         this.tweens.add({
+        //             targets: mushroom,
+        //             y: `-=${2 * this.s}`,
+        //             alpha: { from: 1, to: 0 },
+        //             duration: 500,
+        //             onComplete: () => mushroom.destroy()
+        //         });
+        //     });
         this.enhance(mushroom);
     }
 }
@@ -314,10 +353,9 @@ class Demo5 extends AdventureScene {
         .setFontSize(this.s * 20)
 
         //4 not 5
-        let ball = this.add.text(this.w * 0.35, this.w * 0.25, "🔮")
-            .setFontSize(this.s * 4)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("You will soon find a way out, and it'll be right under your nose. Take it and you will leave the Enchanted Forest."))
+
+        let ball = this.makeEmoji(0.35,0.25,"🔮","You will soon find a way out, and it'll be right under your nose. Take it and you will leave the Enchanted Forest.")
+            .setFontSize(this.s*4)
             .on('pointerdown', () => {
                 this.showMessage("You pick up the crystal ball.");
                 this.gainItem('crystal ball');
@@ -329,6 +367,22 @@ class Demo5 extends AdventureScene {
                     onComplete: () => ball.destroy()
                 });
             });
+
+        // let ball = this.add.text(this.w * 0.35, this.w * 0.25, "🔮")
+        //     .setFontSize(this.s * 4)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("You will soon find a way out, and it'll be right under your nose. Take it and you will leave the Enchanted Forest."))
+        //     .on('pointerdown', () => {
+        //         this.showMessage("You pick up the crystal ball.");
+        //         this.gainItem('crystal ball');
+        //         this.tweens.add({
+        //             targets: ball,
+        //             y: `-=${2 * this.s}`,
+        //             alpha: { from: 1, to: 0 },
+        //             duration: 500,
+        //             onComplete: () => ball.destroy()
+        //         });
+        //     });
         this.enhance(ball);
     }
 }
@@ -359,10 +413,9 @@ class Demo6 extends AdventureScene {
             .setFontSize(this.s * 20)
 
         //4 not 5
-        let potion = this.add.text(this.w * 0.24, this.w * 0.35, "🧪")
-            .setFontSize(this.s * 4)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("Weird potion!"))
+
+        let potion = this.makeEmoji(0.24,0.35,"🧪","Weird potion!")
+            .setFontSize(this.s*4)
             .on('pointerdown', () => {
                 this.showMessage("You pick up the potion.");
                 this.gainItem('potion');
@@ -374,6 +427,22 @@ class Demo6 extends AdventureScene {
                     onComplete: () => potion.destroy()
                 });
             });
+
+        // let potion = this.add.text(this.w * 0.24, this.w * 0.35, "🧪")
+        //     .setFontSize(this.s * 4)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("Weird potion!"))
+        //     .on('pointerdown', () => {
+        //         this.showMessage("You pick up the potion.");
+        //         this.gainItem('potion');
+        //         this.tweens.add({
+        //             targets: potion,
+        //             y: `-=${2 * this.s}`,
+        //             alpha: { from: 1, to: 0 },
+        //             duration: 500,
+        //             onComplete: () => potion.destroy()
+        //         });
+        //     });
 
         this.enhance(potion);
         
