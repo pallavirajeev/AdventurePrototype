@@ -31,7 +31,6 @@ class Demo1 extends AdventureScene {
         })
         arrow.on('pointerdown', () => {
             if (this.hasItem("spell book")) {
-                //this.loseItem("book")
                 this.gotoScene('demo3');
             }
         })
@@ -55,9 +54,9 @@ class Demo1 extends AdventureScene {
         //     .on('pointerover', () => this.showMessage("Oh noo, how do I find my way out of this enchanted forest?"))
 
 
-        let player = this.makeEmoji(0.2,0.2,"🧚🏽‍♀️")
+        let player = this.makeEmoji(0.2,0.2,"🧚🏽‍♀️","Oh noo, how do I find my way out of this enchanted forest?")
             .setFontSize(this.s * 20)
-            .on('pointerover', () => this.showMessage("Oh noo, how do I find my way out of this enchanted forest?"))
+            //.on('pointerover', () => this.showMessage("Oh noo, how do I find my way out of this enchanted forest?"))
     
         // let book = this.add.text(this.w * 0.5, this.w * 0.3, "📖")
         //     .setFontSize(this.s * 5)
@@ -75,8 +74,8 @@ class Demo1 extends AdventureScene {
         //         });
         //     });
         
-        let book = this.makeEmoji(0.5,0.3,"📖")
-            .on('pointerover', () => this.showMessage("Oooh, a spell book!"))
+        let book = this.makeEmoji(0.5,0.3,"📖","Oooh, a spell book!")
+            //.on('pointerover', () => this.showMessage("Oooh, a spell book!"))
             .on('pointerdown', () => {
                 this.showMessage("You pick up the spell book.");
                 this.gainItem('spell book');
@@ -88,7 +87,8 @@ class Demo1 extends AdventureScene {
                     onComplete: () => book.destroy()
                 });
             });
-
+        
+        this.enhance(book);
 
     }
 }
@@ -123,11 +123,14 @@ class Demo2 extends AdventureScene {
             this.gotoScene('demo1');
         })
 
-        let player = this.add.text(this.w * 0.01, this.w * 0.17, "🧚🏽‍♀️")
-            .setFontSize(this.s * 20)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("Hey look a wand on the other side of the pond, maybe that could be helpful!"))
+        // let player = this.add.text(this.w * 0.01, this.w * 0.17, "🧚🏽‍♀️")
+        //     .setFontSize(this.s * 20)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("Hey look a wand on the other side of the pond, maybe that could be helpful!"))
 
+        let player = this.makeEmoji(0.01,0.17,"🧚🏽‍♀️","Hey look a wand on the other side of the pond, maybe that could be helpful!")
+            .setFontSize(this.s * 20)
+        
         let wand = this.add.text(this.w * 0.68, this.w * 0.28, "🪄")
             .setFontSize(this.s * 5)
             .setInteractive()
@@ -143,7 +146,8 @@ class Demo2 extends AdventureScene {
                     onComplete: () => wand.destroy()
                 });
             }); 
-        }
+        this.enhance(wand);
+    }
 }
 
 class Demo3 extends AdventureScene {
@@ -188,11 +192,13 @@ class Demo3 extends AdventureScene {
             this.gotoScene('demo4');
         })
 
-        let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
-            .setFontSize(this.s * 20)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("I don't see much here, just some pretty water lilies."))
+        // let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
+        //     .setFontSize(this.s * 20)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("I don't see much here, just some pretty water lilies."))
 
+        let player = this.makeEmoji(0.1,0.2,"🧚🏽‍♀️","I don't see much here, just some pretty water lilies.")
+            .setFontSize(this.s * 20)
         //this.enhance(player);
 
 
@@ -211,6 +217,7 @@ class Demo3 extends AdventureScene {
                     onComplete: () => flower.destroy()
                 });
             });
+        this.enhance(flower);
     }
 }
 class Demo4 extends AdventureScene {
@@ -243,10 +250,13 @@ class Demo4 extends AdventureScene {
             this.gotoScene('demo3');
         })
 
-        let player = this.add.text(this.w * 0.2, this.w * 0.2, "🧚🏽‍♀️")
+        // let player = this.add.text(this.w * 0.2, this.w * 0.2, "🧚🏽‍♀️")
+        //     .setFontSize(this.s * 20)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("I'm just getting more lost, there's nothing helpful here either."))
+
+        let player = this.makeEmoji(0.2,0.2,"🧚🏽‍♀️","I'm just getting more lost, there's nothing helpful here either.")
             .setFontSize(this.s * 20)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("I'm just getting more lost, there's nothing helpful here either."))
 
         let mushroom = this.add.text(this.w * 0.4, this.w * 0.3, "🍄")
             .setFontSize(this.s * 8)
@@ -263,6 +273,7 @@ class Demo4 extends AdventureScene {
                     onComplete: () => mushroom.destroy()
                 });
             });
+        this.enhance(mushroom);
     }
 }
 class Demo5 extends AdventureScene {
@@ -303,17 +314,18 @@ class Demo5 extends AdventureScene {
             .setFontSize(this.s * 4)
             .setInteractive()
             .on('pointerover', () => this.showMessage("You will soon find a way out, and it'll be right under your nose. Take it and you will leave the Enchanted Forest."))
-            // .on('pointerdown', () => {
-            //     this.showMessage("You pick up the crystal ball.");
-            //     this.gainItem('crystal ball');
-            //     this.tweens.add({
-            //         targets: ball,
-            //         y: `-=${2 * this.s}`,
-            //         alpha: { from: 1, to: 0 },
-            //         duration: 500,
-            //         onComplete: () => ball.destroy()
-            //     });
-            // });
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the crystal ball.");
+                this.gainItem('crystal ball');
+                this.tweens.add({
+                    targets: ball,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => ball.destroy()
+                });
+            });
+        this.enhance(ball);
     }
 }
 class Demo6 extends AdventureScene {
@@ -354,14 +366,15 @@ class Demo6 extends AdventureScene {
                     onComplete: () => potion.destroy()
                 });
             });
+
+        this.enhance(potion);
         
         let line = this.add.text(this.w * 0.47, this.w * 0.346, "〰")
         .setFontSize(this.s * 19.5)
         .setInteractive()
         .rotation = 80
-        //.on('pointerover', () => this.showMessage("I don't know whether to believe the crystall ball or not...but this weird potion is right under my nose."))
 
-    
+
         let e1 = this.add.text(this.w * 0.48, this.w * 0.23, "⚫️")
             .setFontSize(this.s * 2)
             .setInteractive()
@@ -376,7 +389,6 @@ class Demo6 extends AdventureScene {
                 if (this.hasItem("potion")) {
                     this.loseItem("potion");
                     this.showMessage("*whoosh*");
-                    //door.setText("🚪 unlocked door");
                     this.gotoScene('outro1');
                 }
             })
@@ -395,7 +407,6 @@ class Demo6 extends AdventureScene {
                 if (this.hasItem("spell book")) {
                     this.loseItem("spell book");
                     this.showMessage("*whoosh*");
-                    //door.setText("🚪 unlocked door");
                     this.gotoScene('outro2');
                 }
             })
@@ -418,7 +429,6 @@ class Intro extends Phaser.Scene {
             'intro',//imagename
         )
         image.setScale(1.68)
-        //this.add.text(50,50, "Adventure awaits!").setFontSize(50);
         this.add.text(820,100, "Click anywhere to begin.").setFontSize(20);
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
@@ -434,7 +444,6 @@ class Outro1 extends Phaser.Scene {
     preload(){
         this.load.path = './assets/';
         this.load.image('outro1', 'outro1.png');
-        //this.load.image('arrow', 'pointer.webp');
     }
     create() {
         let image = this.add.image(
@@ -452,7 +461,6 @@ class Outro2 extends Phaser.Scene {
     preload(){
         this.load.path = './assets/';
         this.load.image('outro2', 'outro2.png');
-        //this.load.image('arrow', 'pointer.webp');
     }
     create() {
         let image = this.add.image(

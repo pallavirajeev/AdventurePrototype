@@ -52,11 +52,22 @@ class AdventureScene extends Phaser.Scene {
 
     }
 
-    makeEmoji(x,y,str){
-        let res = this.add.text(this.w * x, this.w * y, str);
-        res.setFontSize(this.s * 5)
-        res.setInteractive()
+    makeEmoji(x,y,str,msg){
+        let res = this.add.text(this.w * x, this.w * y, str)
+            .setFontSize(this.s * 5)
+            .setInteractive()
+            .on('pointerover', () => this.showMessage(msg))
         return res;
+    }
+
+    enhance(obj){
+        this.tweens.add({
+            targets: obj,
+            y: "-=10",
+            repeat: -1,
+            yoyo: true
+        });
+        obj.setShadow(this.s, this.s, '#333333', this.s);
     }
 
     showMessage(message) {
