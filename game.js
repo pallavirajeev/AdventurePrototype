@@ -75,7 +75,6 @@ class Demo1 extends AdventureScene {
         //     });
         
         let book = this.makeEmoji(0.5,0.3,"📖","Oooh, a spell book!")
-            //.on('pointerover', () => this.showMessage("Oooh, a spell book!"))
             .on('pointerdown', () => {
                 this.showMessage("You pick up the spell book.");
                 this.gainItem('spell book');
@@ -258,6 +257,7 @@ class Demo4 extends AdventureScene {
         let player = this.makeEmoji(0.2,0.2,"🧚🏽‍♀️","I'm just getting more lost, there's nothing helpful here either.")
             .setFontSize(this.s * 20)
 
+        //8 not 5
         let mushroom = this.add.text(this.w * 0.4, this.w * 0.3, "🍄")
             .setFontSize(this.s * 8)
             .setInteractive()
@@ -305,11 +305,15 @@ class Demo5 extends AdventureScene {
             this.gotoScene('demo6');
         })
 
-        let player = this.add.text(this.w * 0.5, this.w * 0.2, "🧚🏽‍♀️")
-            .setFontSize(this.s * 20)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("This looks more promising."))
+        // let player = this.add.text(this.w * 0.5, this.w * 0.2, "🧚🏽‍♀️")
+        //     .setFontSize(this.s * 20)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("This looks more promising."))
 
+        let player = this.makeEmoji(0.5,0.2,"🧚🏽‍♀️","This looks more promising.")
+        .setFontSize(this.s * 20)
+
+        //4 not 5
         let ball = this.add.text(this.w * 0.35, this.w * 0.25, "🔮")
             .setFontSize(this.s * 4)
             .setInteractive()
@@ -346,11 +350,15 @@ class Demo6 extends AdventureScene {
         image.setScale(2)
 
 
-        let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
-            .setFontSize(this.s * 20)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("I don't know whether to believe the crystall ball or not...but this weird potion is right under my nose."))
+        // let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
+        //     .setFontSize(this.s * 20)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("I don't know whether to believe the crystall ball or not...but this weird potion is right under my nose."))
 
+        let player = this.makeEmoji(0.1,0.2,"🧚🏽‍♀️","I don't know whether to believe the crystall ball or not...but this weird potion is right 'under my nose'.")
+            .setFontSize(this.s * 20)
+
+        //4 not 5
         let potion = this.add.text(this.w * 0.24, this.w * 0.35, "🧪")
             .setFontSize(this.s * 4)
             .setInteractive()
