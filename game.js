@@ -49,14 +49,33 @@ class Demo1 extends AdventureScene {
             this.gotoScene('demo2');
         })
 
-        let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
-            .setFontSize(this.s * 20)
-            .setInteractive()
-            .on('pointerover', () => this.showMessage("Oh noo, how do I find my way out of this enchanted forest?"))
+        // let player = this.add.text(this.w * 0.1, this.w * 0.2, "🧚🏽‍♀️")
+        //     .setFontSize(this.s * 20)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("Oh noo, how do I find my way out of this enchanted forest?"))
 
-        let book = this.add.text(this.w * 0.5, this.w * 0.3, "📖")
-            .setFontSize(this.s * 5)
-            .setInteractive()
+
+        let player = this.makeEmoji(0.2,0.2,"🧚🏽‍♀️")
+            .setFontSize(this.s * 20)
+            .on('pointerover', () => this.showMessage("Oh noo, how do I find my way out of this enchanted forest?"))
+    
+        // let book = this.add.text(this.w * 0.5, this.w * 0.3, "📖")
+        //     .setFontSize(this.s * 5)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.showMessage("Oooh, a spell book!"))
+        //     .on('pointerdown', () => {
+        //         this.showMessage("You pick up the spell book.");
+        //         this.gainItem('spell book');
+        //         this.tweens.add({
+        //             targets: book,
+        //             y: `-=${2 * this.s}`,
+        //             alpha: { from: 1, to: 0 },
+        //             duration: 500,
+        //             onComplete: () => book.destroy()
+        //         });
+        //     });
+        
+        let book = this.makeEmoji(0.5,0.3,"📖")
             .on('pointerover', () => this.showMessage("Oooh, a spell book!"))
             .on('pointerdown', () => {
                 this.showMessage("You pick up the spell book.");
@@ -69,6 +88,7 @@ class Demo1 extends AdventureScene {
                     onComplete: () => book.destroy()
                 });
             });
+
 
     }
 }
@@ -172,6 +192,9 @@ class Demo3 extends AdventureScene {
             .setFontSize(this.s * 20)
             .setInteractive()
             .on('pointerover', () => this.showMessage("I don't see much here, just some pretty water lilies."))
+
+        //this.enhance(player);
+
 
         let flower = this.add.text(this.w * 0.4, this.w * 0.45, "🪷")
             .setFontSize(this.s * 5)

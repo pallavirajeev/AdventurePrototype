@@ -8,7 +8,6 @@ class AdventureScene extends Phaser.Scene {
         super(key);
         this.name = name;
     }
-
     create() {
         this.transitionDuration = 1000;
 
@@ -51,6 +50,13 @@ class AdventureScene extends Phaser.Scene {
 
         this.onEnter();
 
+    }
+
+    makeEmoji(x,y,str){
+        let res = this.add.text(this.w * x, this.w * y, str);
+        res.setFontSize(this.s * 5)
+        res.setInteractive()
+        return res;
     }
 
     showMessage(message) {
