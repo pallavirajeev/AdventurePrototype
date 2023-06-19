@@ -21,3 +21,6 @@ Asset sources:
 Code sources:
 - `adventure.js` and `index.html` were created for this project [Adam Smith](https://github.com/rndmcnlly) and edited by me.
 - `game.js` was sketched by [Adam Smith](https://github.com/rndmcnlly) and rewritten by me.
+
+Link to game:
+- https://pallavirajeev.github.io/AdventurePrototype/
